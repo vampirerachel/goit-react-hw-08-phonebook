@@ -1,0 +1,124 @@
+/* Add the cool and artistic styles here */
+
+.formContainer {
+    position: relative;
+    width: 300px;
+    margin: 50px auto;
+    background-color: #f6f6f6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.inputContainer {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    height: 35px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    padding: 5px 0;
+    color: #555;
+    transition: 0.3s;
+    font-size: 16px;
+
+    &:focus,
+    &:valid {
+        outline: none;
+        border-color: #ff4081;
+    }
+
+    &:focus+.inputLabel,
+    &:valid+.inputLabel {
+        font-size: 14px;
+        top: -22px;
+        color: #ff4081;
+        font-weight: bold;
+    }
+}
+
+.inputLabel {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    color: #555;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.button {
+    background-color: #ff4081;
+    padding: 8px 15px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 16px;
+
+    &:hover {
+        background-color: #ff4d4d;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+/* Add artistic flare */
+
+.formContainer:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(to right, #ff4081, #ff4d4d);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.formContainer:after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(to right, #ff4081, #ff4d4d);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(#ff4081, #ff4d4d);
+    opacity: 0.3;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.button:hover:before {
+    opacity: 0.5;
+}
+

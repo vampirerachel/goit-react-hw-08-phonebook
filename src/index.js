@@ -10,7 +10,7 @@ const rootElement = document.getElementById('root');
 createRoot(rootElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/goit-react-hw-08-phonebook">
         <App />
       </BrowserRouter>
     </Provider>

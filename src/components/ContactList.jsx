@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchContacts, deleteContact } from "../redux/contactReducer";
+import { fetchContacts, deleteContact } from "../components/redux/contactReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./contactList.module.css";
 import Filter from "./Filter";

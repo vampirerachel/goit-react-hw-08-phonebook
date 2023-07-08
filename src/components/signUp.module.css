@@ -1,0 +1,24 @@
+.avatar {
+    margin: 8px;
+    background-color: #ff6b81;
+}
+
+.title {
+    margin: 8px 0;
+    color: #333333;
+}
+
+.form {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.submitButton {
+    margin: 24px 0;
+    background-color: #ff6b81;
+    color: #ffffff;
+}
+
+.signInLink {
+    color: #ff6b81;
+}

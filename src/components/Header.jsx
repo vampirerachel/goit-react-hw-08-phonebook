@@ -28,7 +28,7 @@ const Header = () => {
             </Link>
           </div>
         );
-      } else if (location.pathname === "/signup") {
+      } else if (location.pathname === "/signup" || location.pathname === "/") {
         // Show "Sign In" button on the sign-up page
         return (
           <div className={styles.links}>

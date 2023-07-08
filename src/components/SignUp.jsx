@@ -49,10 +49,6 @@ function SignUp() {
     }
   };
 
-  const handleSignIn = () => {
-    navigate('/signin');
-  };
-
   return (
     <ThemeProvider theme={createTheme()}>
       <Container component="main" maxWidth="xs">

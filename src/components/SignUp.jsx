@@ -36,8 +36,6 @@ function SignUp() {
         email: data.get('email'),
         password: data.get('password'),
       });
-
-      // Assuming the API response includes the created user information and token
       const { user, token } = response.data;
       // Dispatch the login action to store the user information and token in the Redux store
       dispatch(login({ user, token }));

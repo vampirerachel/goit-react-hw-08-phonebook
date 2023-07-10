@@ -1,4 +1,4 @@
-/* header.module.css */
+
 .header {
     background-color: #4a4e69;
     padding: 24px;
@@ -42,11 +42,16 @@
 
 .username {
     color: #f9fafb;
-    margin-right: 16px;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
 }
 
 .username::after {
     content: ':';
+    margin-left: 8px;
+    font-size: 24px;
 }

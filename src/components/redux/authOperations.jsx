@@ -3,8 +3,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
-// Token management
  export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -38,14 +36,11 @@ export const register = createAsyncThunk(
   }
 );
 
-
-
-// Login operation
 export const login = createAsyncThunk('authlogin', async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', credentials);
     Notify.success("You're logged in ;)");
-    token.set(data.token); // Set the token in Axios headers
+    token.set(data.token); 
     return data;
   } catch (error) {
     Notify.failure('Something went wrong on login');
@@ -64,7 +59,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
       },
     });
     Notify.success("You're logged out. Have a good day ;)");
-    token.unset(); // Clear the token from Axios headers
+    token.unset(); 
   } catch (error) {
     Notify.failure('Something went wrong on logout');
     console.log(error);
@@ -92,7 +87,6 @@ export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunk
   }
 });
 
-// Object containing all authentication operations
 export const authOperations = {
   register,
   login,

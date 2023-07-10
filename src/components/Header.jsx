@@ -21,7 +21,7 @@ const Header = () => {
     if (isLoggedIn) {
       return (
         <div className={styles.userInfo}>
-          <span className={styles.username}>{userName}</span>
+          <span className={styles.username}> Welcome {userName}</span>
           <button onClick={handleLogout} className={styles.button}>
             Sign Out
           </button>

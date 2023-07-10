@@ -53,7 +53,7 @@ const NameForm = () => {
   return (
     <div className={styles.formContainer}>
       <div className={styles.phonebook}>
-        <h2 className={styles.phonebookTitle}>My Phonebook</h2>
+        <h2 className={styles.phonebookTitle}>Create Contact</h2>
       </div>
       <p className={styles.label}>Name</p>
       <form onSubmit={handleSubmit}>
@@ -79,7 +79,7 @@ const NameForm = () => {
           />
         </div>
         <button className={styles.button} type="submit">
-          Add New Contact
+          Add to Phonebook
         </button>
       </form>
     </div>

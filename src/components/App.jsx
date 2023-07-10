@@ -6,7 +6,8 @@ import Header from './Header';
 import NameForm from './NameForm';
 import ContactList from './ContactList';
 import styles from "./app.module.css"
-
+import PublicRoute from './publicRoute';
+import PrivateRoute from './privateRoute';
 
 const Phonebook = () => {
   return (
@@ -20,18 +21,47 @@ const Phonebook = () => {
 };
 
 const App = () => {
-
   return (
     <div>
-      <Header />
+      <Header /> 
       <Routes>
-        <Route path="/" element={<SignIn  />} />
-        <Route path="/signin" element={<SignIn  />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/phonebook/*" element={<Phonebook />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <SignIn />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/signin"
+          element={
+            <PublicRoute>
+              <SignIn />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            <PublicRoute>
+              <SignUp />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/phonebook/*"
+          element={
+            <PrivateRoute>
+              <Phonebook />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
 };
-
-export default App;
+export default App

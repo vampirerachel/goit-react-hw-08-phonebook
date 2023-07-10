@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "../redux/contactReducer";
+import { addContact } from "./redux/contactReducer";
 import { nanoid } from "@reduxjs/toolkit";
 import styles from "./nameForm.module.css";
 

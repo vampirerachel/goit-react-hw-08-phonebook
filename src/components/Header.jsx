@@ -1,63 +1,58 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import styles from "./header.module.css";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation, Navigate } from 'react-router-dom';
+import { authSelectors } from './redux/authSelectors';
+import { logOut } from './redux/authOperations';
+import styles from './header.module.css';
 
 const Header = () => {
-  const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const userName = useSelector(authSelectors.getUserName);
+  const dispatch = useDispatch();
   const location = useLocation();
 
+  const handleLogout = () => {
+    dispatch(logOut());
+    // Redirect to sign-in page after logout
+    return <Navigate to="/signin" />;
+  };
+
   const renderAuthLinks = () => {
-    if (isAuthenticated) {
-      // User is logged in
+    if (isLoggedIn) {
       return (
-        <div className={styles.links}>
-          <Link to="/logout" className={styles.link}>
-            Logout
-          </Link>
+        <div className={styles.userInfo}>
+          <span className={styles.username}>{userName}</span>
+          <button onClick={handleLogout} className={styles.button}>
+            Sign Out
+          </button>
         </div>
       );
     } else {
-      // User is not logged in or authentication state is undefined
-      if (location.pathname === "/signin") {
-        // Show "Sign Up" button on the sign-in page
+      if (location.pathname === '/signup') {
         return (
           <div className={styles.links}>
-            <Link to="/signup" className={styles.link}>
-              Sign Up
+            <Link to="/signin" className={styles.button}>
+              Sign In
             </Link>
           </div>
         );
-      } else if (location.pathname === "/signup" || location.pathname === "/") {
-        // Show "Sign In" button on the sign-up page
+      } else if (location.pathname === '/signin') {
         return (
           <div className={styles.links}>
-            <Link to="/signin" className={styles.link}>
-              Sign In
+            <Link to="/signup" className={styles.button}>
+              Sign Up
             </Link>
           </div>
         );
       } else {
-        // Show both "Sign Up" and "Login" buttons on other pages
-        return (
-          <div className={styles.links}>
-            <Link to="/signup" className={styles.link}>
-              Sign Up
-            </Link>
-            <Link to="/signin" className={styles.link}>
-              Sign In
-            </Link>
-          </div>
-        );
+        return null;
       }
     }
   };
 
   return (
     <header className={styles.header}>
-      <Link to="/signin" className={styles.title}>
-        Phonebook App
-      </Link>
+      <span className={styles.title}>Phonebook App</span>
       {renderAuthLinks()}
     </header>
   );

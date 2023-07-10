@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
-import { Routes, Route,  Navigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+
+import { Routes, Route } from 'react-router-dom';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Header from './Header';
 import NameForm from './NameForm';
-import Filter from './Filter';
 import ContactList from './ContactList';
-import { login } from './redux/authOperations';
+import styles from "./app.module.css"
 
 
 const Phonebook = () => {
   return (
-    <div>
-      <h2>Phonebook</h2>
-      <NameForm />
-      <Filter />
+    <div className={styles.phonebookContainer}>
+            <div className={styles.nameFormContainer}>
+        <NameForm />
+      </div>
       <ContactList />
     </div>
   );

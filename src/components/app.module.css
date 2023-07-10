@@ -1,5 +1,6 @@
 .phonebookContainer {
     display: flex;
+    margin: 30px 50px;
 }
 
 .nameFormContainer {

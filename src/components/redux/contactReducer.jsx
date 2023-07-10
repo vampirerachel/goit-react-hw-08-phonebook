@@ -18,8 +18,13 @@ const initialState = {
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
-  async () => {
-    const response = await fetch("https://64a31d54b45881cc0ae62634.mockapi.io/contacts");
+  async (_, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+    const response = await fetch("https://connections-api.herokuapp.com/contacts", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!response.ok) {
       throw new Error("Failed to fetch contacts");
     }
@@ -28,13 +33,16 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
+
 export const addContact = createAsyncThunk(
   "contacts/addContact",
-  async (contact) => {
-    const response = await fetch("https://64a31d54b45881cc0ae62634.mockapi.io/contacts", {
+  async (contact, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+    const response = await fetch("https://connections-api.herokuapp.com/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(contact),
     });
@@ -48,9 +56,13 @@ export const addContact = createAsyncThunk(
 
 export const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
-  async (id) => {
-    const response = await fetch(`https://64a31d54b45881cc0ae62634.mockapi.io/contacts/${id}`, {
+  async (id, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+    const response = await fetch(`https://connections-api.herokuapp.com/contacts/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
     if (!response.ok) {
       throw new Error("Failed to delete contact");

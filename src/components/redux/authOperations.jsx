@@ -14,18 +14,31 @@ axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
   },
 };
 
-// Registration operation
-export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
-  try {
-    const { data } = await axios.post('/users/signup', credentials);
-    Notify.success("You're registered ;)");
-    return data;
-  } catch (error) {
-    Notify.failure('Something went wrong on register');
-    console.log(error);
-    return thunkAPI.rejectWithValue(error);
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/signup', credentials);
+      Notify.success("You're registered ;)");
+      return data;
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data.message === 'Email already exists.'
+      ) {
+        Notify.failure('Email already exists. Please use a different email.');
+        return thunkAPI.rejectWithValue(
+          'Email already exists. Please use a different email.'
+        );
+      } else {
+        Notify.failure('Something went wrong on register');
+        return thunkAPI.rejectWithValue('Something went wrong on register');
+      }
+    }
   }
-});
+);
+
+
 
 // Login operation
 export const login = createAsyncThunk('authlogin', async (credentials, thunkAPI) => {
@@ -44,10 +57,14 @@ export const login = createAsyncThunk('authlogin', async (credentials, thunkAPI)
 // Logout operation
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('users/logout');
+    const authToken = thunkAPI.getState().auth.token;
+    await axios.post('users/logout', null, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
     Notify.success("You're logged out. Have a good day ;)");
     token.unset(); // Clear the token from Axios headers
-    
   } catch (error) {
     Notify.failure('Something went wrong on logout');
     console.log(error);

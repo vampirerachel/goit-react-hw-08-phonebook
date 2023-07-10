@@ -13,10 +13,11 @@ const useAuth = () => {
   const register = async (credentials) => {
     try {
       await dispatch(authOperations.register(credentials));
-      navigate("/contacts");
+      navigate("/signin");
     } catch (error) {
       Notify.failure("Something went wrong on register");
       console.log(error);
+      navigate("/signup");
     }
   };
 

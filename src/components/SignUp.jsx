@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useAuth from './redux/auth';
+import styles from './signUp.module.css';
 
 function SignUp() {
   const { register } = useAuth();
@@ -35,46 +36,57 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Sign Up</h1>
       {registrationSuccess ? (
-        <p>Registration successful!</p>
+        <p className={styles.successMessage}>Registration successful!</p>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <label>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label className={styles.label}>
             Name:
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
+              className={styles.input}
               required
             />
           </label>
           <br />
-          <label>
+          <label className={styles.label}>
             Email:
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              className={styles.input}
               required
             />
           </label>
           <br />
-          <label>
+          <label className={styles.label}>
             Password:
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
+              className={styles.input}
+              minLength={7}
               required
             />
+            {formData.password.length > 0 && formData.password.length < 7 && (
+              <p className={styles.errorMessage}>
+                Password must be at least 7 characters long.
+              </p>
+            )}
           </label>
           <br />
-          <button type="submit">Sign Up</button>
+          <button type="submit" className={styles.button}>
+            Sign Up
+          </button>
         </form>
       )}
     </div>
